@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devs & Architects Assembly powered by Polymindra</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        #container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #header {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        #chatbox {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: scroll;
+            padding: 20px;
+        }
+        #userInput {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <h1>Devs & Architects Assembly powered by Polymindra</h1>
+        <p id="usernameDisplay"></p>
+    </div>
+
+    <div id="chatbox"></div>
+
+    <div id="userInput">
+        <input type="text" id="message">
+        <button onclick="sendMessage()">Send Message</button>
+    </div>
+</div>
+
+<script>
+    function sendMessageOnEnter(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+
+    $("#message").on("keyup", sendMessageOnEnter);
+    function getMessages() {
+        $.get("/messages", function (data) {
+            $("#chatbox").html(data.replace(/###/g, "<br>"));
+            $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+        });
+    }
+
+    function setUsername() {
+        var username = prompt("Please enter your username:");
+        if (username) {
+            $("#usernameDisplay").text("Logged in as " + username);
+        } else {
+            setUsername(); // If canceled, ask again
+        }
+    }
+
+    function sendMessage() {
+        var username = $("#usernameDisplay").text().replace("Logged in as ", "");
+        var message = $("#message").val();
+
+        if (username && message) {
+            $.post("/addMessage", { username: username, message: message }, function () {
+                getMessages(); // Refresh messages after sending a new one
+            });
+
+            // Clear message input
+            $("#message").val("");
+        } else {
+            alert("Please enter a message.");
+        }
+    }
+
+    // Set the username when the page loads
+    setUsername();
+
+    // Load messages when the page loads
+    getMessages();
+
+    // Poll for new messages every 5 seconds (for demonstration purposes)
+    setInterval(getMessages, 5000);
+</script>
+</body>
+</html>
