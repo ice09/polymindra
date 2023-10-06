@@ -4,7 +4,7 @@
 
 ## Setup
 
-* Install Java
+* Install Java 21 (use https://sdkman.io/ for non-win & wsl2)
 * Change OpenAI API key in `src/main/resources/application.properties`
 * Run `mvnw spring-boot:run`
 
