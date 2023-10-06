@@ -1,4 +1,4 @@
-package tech.indus340.polymindra.polymindra;
+package tech.indus340.polymindra;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

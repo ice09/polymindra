@@ -12,7 +12,7 @@
 	<artifactId>polymindra</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>polymindra</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Mediator Chat Bot for Devs</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -21,7 +21,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-spring-boot-starter</artifactId>
+			<version>0.23.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

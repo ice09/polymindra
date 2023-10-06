@@ -22,6 +22,7 @@
             color: #fff;
             padding: 10px;
             text-align: center;
+            font-family: 'Roboto', sans-serif;
         }
         #chatbox {
             background: #fff;
@@ -31,21 +32,26 @@
             max-height: 400px;
             overflow-y: scroll;
             padding: 20px;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5; /* Improved readability with increased line height */
         }
         #userInput {
             margin-top: 20px;
         }
         input[type="text"] {
-            width: 300px;
+            width: 200px;
             padding: 10px;
             font-size: 16px;
+            font-family: 'Roboto', sans-serif;
         }
         button {
             padding: 10px 15px;
             font-size: 16px;
             cursor: pointer;
+            font-family: 'Roboto', sans-serif;
         }
     </style>
+
 </head>
 <body>
 <div id="container">
@@ -72,7 +78,7 @@
     $("#message").on("keyup", sendMessageOnEnter);
     function getMessages() {
         $.get("/messages", function (data) {
-            $("#chatbox").html(data.replace(/###/g, "<br>"));
+            $("#chatbox").html(data.replace(/###/g, "<br><br>"));
             $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
         });
     }
