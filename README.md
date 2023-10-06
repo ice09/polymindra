@@ -2,6 +2,10 @@
 
 ![Polymindra overview](docs/polymindra_overview.png)
 
+## Read
+
+Read more about this application here: https://hackmd.io/@alculexum/polymindra
+
 ## Setup
 
 * Install Java 21 (use https://sdkman.io/ for non-win & wsl2)
